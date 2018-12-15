@@ -11,7 +11,7 @@ public class UI {
 			for (int j = 0; j < pecas.length; j++) {
 				mostraPeca(pecas[i][j]);
 			}
-			System.out.println();
+			System.out.println("");
 		}
 		System.out.print("  a b c d e f g h");
 		
@@ -22,7 +22,7 @@ public class UI {
 			System.out.print("-");
 		}
 		else {
-			System.out.println(peca);
+			System.out.print(peca);
 		}
 		System.out.print(" ");
 	}	
