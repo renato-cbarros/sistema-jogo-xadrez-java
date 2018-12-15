@@ -2,8 +2,8 @@ package tabuleirojogo;
 
 public class Posicao {
 	
-	private int coluna;
-	private int linha;
+	private Integer coluna;
+	private Integer linha;
 	
 	public Posicao(int linha, int coluna) {
 		this.linha = linha;

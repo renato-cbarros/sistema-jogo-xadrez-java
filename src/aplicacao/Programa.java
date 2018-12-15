@@ -1,15 +1,16 @@
 package aplicacao;
 
-import tabuleirojogo.Posicao;
+import tabuleirojogo.Tabuleiro;
+import xadrez.PartidaXadrez;
 
 public class Programa {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Posicao pos = new Posicao(3, 5);
+		PartidaXadrez partidaXadrez = new PartidaXadrez();
 		
-		System.out.println(pos);
+		UI.mostraTabuleiro(partidaXadrez.getPecas());
 
 	}
 
