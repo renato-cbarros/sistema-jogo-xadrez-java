@@ -26,9 +26,9 @@ public class PartidaXadrez {
 	}
 	
 	public void formacaoInicial() {
-		tabuleiro.colocaPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(0, 0));
-		tabuleiro.colocaPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(1, 1));
-		tabuleiro.colocaPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(7, 0));
+		tabuleiro.colocaPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(7, 0));
+		tabuleiro.colocaPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(6, 0));
+		tabuleiro.colocaPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(5, 0));
 	}
 
 }
