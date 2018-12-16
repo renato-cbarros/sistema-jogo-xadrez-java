@@ -26,6 +26,10 @@ public class Programa {
 				System.out.println("");
 				System.out.print("Inicial: ");
 				PosicaoXadrez inicial = UI.lerPosicaoXadrez(sc);
+				
+				boolean[][] possiveisMovimentos = partidaXadrez.possiveisMovimentos(inicial);
+				UI.clearScreen();
+				UI.mostraTabuleiro(partidaXadrez.getPecas(), possiveisMovimentos);
 			
 				System.out.println("");
 				System.out.print("Final: ");

@@ -1,24 +1,24 @@
-package pecas.xadrez;
+package xadrez.pecas;
 
 import tabuleirojogo.Tabuleiro;
 import xadrez.Cor;
 import xadrez.PecaXadrez;
 
-public class Torre extends PecaXadrez{
+public class Rei extends PecaXadrez {
 
-	public Torre(Tabuleiro tabuleiro, Cor cor) {
+	public Rei(Tabuleiro tabuleiro, Cor cor) {
 		super(tabuleiro, cor);
+		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
 	public String toString() {
-		return "T";
+		return "R";
 	}
-	
+
 	@Override
 	public boolean[][] possiveisMovimentos() {
 		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 		return mat;
 	}
-	
+
 }

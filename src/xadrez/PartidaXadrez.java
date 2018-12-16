@@ -1,10 +1,10 @@
 package xadrez;
 
-import pecas.xadrez.Rei;
-import pecas.xadrez.Torre;
 import tabuleirojogo.Peca;
 import tabuleirojogo.Posicao;
 import tabuleirojogo.Tabuleiro;
+import xadrez.pecas.Rei;
+import xadrez.pecas.Torre;
 
 public class PartidaXadrez {
 	
@@ -26,10 +26,17 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+	public boolean[][] possiveisMovimentos(PosicaoXadrez posicaoInicial){
+		Posicao posicao = posicaoInicial.passaPosicaoXadrez();
+		validaPosicaoInicial(posicao);
+		return tabuleiro.peca(posicao).possiveisMovimentos();
+	}
+	
 	public PecaXadrez moveXadrez(PosicaoXadrez posicaoInicial, PosicaoXadrez posicaoFinal) {
 		Posicao inicial = posicaoInicial.passaPosicaoXadrez();
 		Posicao fim = posicaoFinal.passaPosicaoXadrez();
 		validaPosicaoInicial(inicial);
+		validaPosicaoFinal(inicial, fim);
 		Peca capturaPeca = fazMover(inicial,fim);
 		return (PecaXadrez)capturaPeca;
 	} 
@@ -47,6 +54,12 @@ public class PartidaXadrez {
 		}
 		if (!tabuleiro.peca(posicao).temUmMovimentoPossivel()) {
 			throw new XadrezException("Nao existe movimentos possiveis");
+		}
+	}
+	
+	public void validaPosicaoFinal(Posicao inicial, Posicao fim) {
+		if (!tabuleiro.peca(inicial).possiveisMovimentos(fim)) {
+			throw new XadrezException("Nao e possivel mover a peca para o destino");
 		}
 	}
 	
