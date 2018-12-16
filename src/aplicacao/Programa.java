@@ -1,5 +1,7 @@
 package aplicacao;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,14 +16,14 @@ public class Programa {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);
-		
 		PartidaXadrez partidaXadrez = new PartidaXadrez();
+		List<PecaXadrez> capturada = new ArrayList<>();
 		
-		while (true) {
+		while (!partidaXadrez.getCheckMate()) {
 			try {
 				
 				UI.clearScreen();
-				UI.mostraTabuleiro(partidaXadrez.getPecas());
+				UI.mostraPartida(partidaXadrez, capturada);
 				System.out.println("");
 				System.out.println("");
 				System.out.print("Inicial: ");
@@ -37,6 +39,9 @@ public class Programa {
 				
 				PecaXadrez pecaCapturada = partidaXadrez.moveXadrez(inicial, fim);
 			
+				if (pecaCapturada != null) {
+					capturada.add(pecaCapturada);
+				}
 			}
 			catch (XadrezException e) {
 				System.out.println(e.getMessage());
@@ -48,6 +53,8 @@ public class Programa {
 			}
 
 		}
+		UI.clearScreen();
+		UI.mostraPartida(partidaXadrez, capturada);
 
 	}
 
