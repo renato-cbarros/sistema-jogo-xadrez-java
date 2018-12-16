@@ -3,12 +3,16 @@ package xadrez.pecas;
 import tabuleirojogo.Posicao;
 import tabuleirojogo.Tabuleiro;
 import xadrez.Cor;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 
 public class Peao extends PecaXadrez {
 
-	public Peao(Tabuleiro tabuleiro, Cor cor) {
+	private PartidaXadrez partidaXadrez;
+	
+	public Peao(Tabuleiro tabuleiro, Cor cor, PartidaXadrez partidaXadrez) {
 		super(tabuleiro, cor);
+		this.partidaXadrez = partidaXadrez;
 	}
 
 	@Override
@@ -35,6 +39,18 @@ public class Peao extends PecaXadrez {
 			if (getTabuleiro().posicaoExistente(p) && pecaDoOponente(p)) {
 				mat[p.getLinha()][p.getColuna()] = true;
 			}
+			
+			// movimento especial en passant
+			if (posicao.getLinha() == 3) {
+				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+				if (getTabuleiro().posicaoExistente(esquerda) && pecaDoOponente(esquerda) && getTabuleiro().peca(esquerda) == partidaXadrez.getEnPassantVunerabilidade()) {
+					mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+				}
+				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+				if (getTabuleiro().posicaoExistente(direita) && pecaDoOponente(direita) && getTabuleiro().peca(direita) == partidaXadrez.getEnPassantVunerabilidade()) {
+					mat[direita.getLinha() - 1][direita.getColuna()] = true;
+				}
+			}
 		}
 		else {
 			p.setValores(posicao.getLinha() + 1, posicao.getColuna());
@@ -53,7 +69,20 @@ public class Peao extends PecaXadrez {
 			p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
 			if (getTabuleiro().posicaoExistente(p) && pecaDoOponente(p)) {
 				mat[p.getLinha()][p.getColuna()] = true;
-			}			
+			}
+			
+			// movimento especial en passant
+			if (posicao.getLinha() == 4) {
+				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+				if (getTabuleiro().posicaoExistente(esquerda) && pecaDoOponente(esquerda) && getTabuleiro().peca(esquerda) == partidaXadrez.getEnPassantVunerabilidade()) {
+					mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+				}
+				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+				if (getTabuleiro().posicaoExistente(direita) && pecaDoOponente(direita) && getTabuleiro().peca(direita) == partidaXadrez.getEnPassantVunerabilidade()) {
+					mat[direita.getLinha() + 1][direita.getColuna()] = true;
+				}
+			}
+			
 		}
 		
 		return mat;
